@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arkvio | Gestão Inteligente de Arquivos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <style>
+        :root {
+            --primary: #0056b3;
+            --secondary: #002d5d;
+            --dark: #121212;
+            --light: #ffffff;
+            --gray: #f4f4f4;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Header --- */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 10%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li { margin-left: 2rem; }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover { color: var(--primary); }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--secondary) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 10%;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-cta {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-cta:hover {
+            background: var(--light);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* --- Sections General --- */
+        section { padding: 100px 10%; }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 50px;
+            height: 4px;
+            background: var(--primary);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* --- Sobre Mim --- */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 20px 20px 0px var(--primary);
+        }
+
+        /* --- Serviços --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--gray);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: var(--transition);
+            border-bottom: 4px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* --- Resultados (Testemunhos) --- */
+        .results { background: var(--dark); color: white; }
+        .testimonial-card {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        /* --- Contato --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        form { display: flex; flex-direction: column; }
+
+        form input, form textarea {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #25d366;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 10%;
+            text-align: center;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover { color: var(--primary); }
+
+        /* --- Responsividade --- */
+        @media (max-width: 768px) {
+            header { padding: 1rem 5%; }
+            nav { display: none; } /* Simplicidade para o exemplo */
+            .hero h1 { font-size: 2.2rem; }
+            .about-container, .contact-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">ARKVIO</a>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Transforme o caos em eficiência operacional.</h1>
+        <p>Organização profissional de arquivos físicos e digitais para empresas que buscam agilidade.</p>
+        <a href="#contato" class="btn-cta">Agendar Consultoria Gratuita</a>
+    </section>
+
+    <section id="sobre">
+        <div class="about-container">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Especialista Arkvio" class="about-img">
+            <div>
+                <h2 class="section-title" style="text-align: left; margin-left: 0;">Sobre a Arkvio</h2>
+                <p>Com mais de 10 anos de experiência, a Arkvio nasceu da necessidade de organizar o fluxo de informações no mundo corporativo. Acreditamos que um arquivo organizado não é apenas estética, mas uma ferramenta estratégica de produtividade.</p>
+                <p style="margin-top: 1rem;">Nossa fundadora, especialista em gestão documental, lidera uma equipe pronta para digitalizar e catalogar sua história.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos" style="background-color: #fff;">
+        <h2 class="section-title">Nossos Serviços</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-archive"></i>
+                <h3>Arquivos Físicos</h3>
+                <p>Triagem, higienização e catalogação de documentos em papel com métodos arquivísticos.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-cloud"></i>
+                <h3>Digitalização</h3>
+                <p>Conversão de documentos físicos para o digital com OCR (reconhecimento de texto).</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Gestão de Nuvem</h3>
+                <p>Estruturação de pastas e permissões no Google Drive, OneDrive ou SharePoint.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="resultados" class="results">
+        <h2 class="section-title" style="color: white;">Resultados que Falam</h2>
+        <div class="services-grid">
+            <div class="testimonial-card">
+                <p>"A Arkvio reduziu nosso tempo de busca por contratos em 80%. O investimento se pagou em dois meses."</p>
+                <br><strong>- Ricardo M., Diretor Jurídico</strong>
+            </div>
+            <div class="testimonial-card">
+                <p>"Organização impecável. O escritório mudou de patamar após a consultoria digital."</p>
+                <br><strong>- Ana Paula, CEO TechFlow</strong>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato">
+        <h2 class="section-title">Fale Conosco</h2>
+        <div class="contact-container">
+            <div>
+                <h3>Vamos organizar sua empresa?</h3>
+                <p>Preencha o formulário ou nos chame diretamente no WhatsApp para um orçamento personalizado.</p>
+                <a href="https://wa.me/5511999999999" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> (11) 99999-9999
+                </a>
+            </div>
+            <form>
+                <input type="text" placeholder="Seu Nome" required>
+                <input type="email" placeholder="Seu E-mail" required>
+                <textarea rows="5" placeholder="Como podemos ajudar?" required></textarea>
+                <button type="submit" class="btn-cta" style="border: none; cursor: pointer;">Enviar Mensagem</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+        <p style="margin-top: 1.5rem;">&copy; 2024 Arkvio Organização de Arquivos. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Configuração das animações ao rolar
+        ScrollReveal().reveal('.hero h1, .hero p, .hero .btn-cta', {
+            delay: 200,
+            distance: '50px',
+            origin: 'bottom',
+            duration: 1000
+        });
+
+        ScrollReveal().reveal('.about-img', {
+            delay: 300,
+            origin: 'left',
+            distance: '100px'
+        });
+
+        ScrollReveal().reveal('.service-card', {
+            delay: 200,
+            interval: 200,
+            distance: '30px',
+            origin: 'bottom'
+        });
+
+        // Rolagem suave para os links do menu
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
